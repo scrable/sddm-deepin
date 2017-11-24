@@ -8,7 +8,6 @@ Item {
     property string userName: userModel.lastUser
     property bool isProcessing: glowAnimation.running
     property alias input: passwdInput
-    property alias button: loginButton
 
     Connections {
         target: sddm
@@ -75,7 +74,7 @@ Item {
 
             text: userName
             color: textColor
-            font.pointSize: 15
+            font.pointSize: 12
         }
 
         Rectangle {
@@ -133,25 +132,7 @@ Item {
                     onTriggered: passwdInput.forceActiveFocus()
                 }
             }
-            ImgButton {
-                id: loginButton
-                height: passwdInput.height
-                width: height
-                anchors {
-                    right: parent.right
-                    verticalCenter: parent.verticalCenter
-                }
 
-                normalImg: "icons/login_normal.png"
-                hoverImg: "icons/login_normal.png"
-                pressImg: "icons/login_press.png"
-                onClicked: {
-                    glowAnimation.running = true
-                    sddm.login(userNameText.text, passwdInput.text, sessionIndex)
-                }
-                KeyNavigation.tab: shutdownButton
-                KeyNavigation.backtab: passwdInput
-            }
         }
     }
 }
